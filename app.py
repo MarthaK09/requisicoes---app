@@ -62,6 +62,11 @@ if enviar:
     }
 
     df = pd.read_csv(ARQUIVO)
+
+# Garante que coluna Urgente exista
+if "Urgente" not in df.columns:
+    df["Urgente"] = "NÃO"
+
     df = pd.concat([df, pd.DataFrame([nova])], ignore_index=True)
     df.to_csv(ARQUIVO, index=False)
 
@@ -92,3 +97,4 @@ for i, row in df[::-1].iterrows():
         Solicitante: {row['Solicitante']}  
         Data: {row['Data']}
         """)
+
